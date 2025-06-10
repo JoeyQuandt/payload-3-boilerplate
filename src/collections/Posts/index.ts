@@ -70,6 +70,8 @@ export const Posts: CollectionConfig<'posts'> = {
     },
     useAsTitle: 'title',
   },
+  defaultSort: ['categories'],
+
   fields: [
     {
       name: 'title',

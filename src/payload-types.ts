@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     users: User;
     comments: Comment;
+    topic: Topic;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -89,6 +90,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     comments: CommentsSelect<false> | CommentsSelect<true>;
+    topic: TopicSelect<false> | TopicSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -718,6 +720,36 @@ export interface Comment {
   createdAt: string;
 }
 /**
+ * This is a a topic collection.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topic".
+ */
+export interface Topic {
+  id: number;
+  title?: string | null;
+  slug?: string | null;
+  content?: string | null;
+  caterogy?:
+    | {
+        tag?: string | null;
+        'Related Content'?: (number | Post)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -820,6 +852,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'comments';
         value: number | Comment;
+      } | null)
+    | ({
+        relationTo: 'topic';
+        value: number | Topic;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1178,6 +1214,33 @@ export interface CommentsSelect<T extends boolean = true> {
   publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topic_select".
+ */
+export interface TopicSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  content?: T;
+  caterogy?:
+    | T
+    | {
+        tag?: T;
+        'Related Content'?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload'
 import { authenticated } from '@/access/authenticated'
 import { anyone } from '@/access/anyone'
+import { slugField } from '@/fields/slug'
 import { fileURLToPath } from 'url'
 import path from 'path'
 
@@ -25,36 +26,19 @@ export const Topic: CollectionConfig = {
       name: 'title',
       type: 'text',
     },
-    {
-      name: 'slug',
-      type: 'text',
-    },
+    ...slugField(),
     {
       name: 'content',
       type: 'textarea',
     },
     {
-      name: 'caterogy',
-      type: 'array',
-      fields: [
-        {
-          name: 'tag',
-          type: 'text',
-        },
-        {
-          name: 'Related Content',
-          type: 'relationship',
-          filterOptions: ({ id }) => {
-            return {
-              id: {
-                not_in: [id],
-              },
-            }
-          },
-          hasMany: true,
-          relationTo: 'posts',
-        },
-      ],
+      name: 'categories',
+      type: 'relationship',
+      admin: {
+        position: 'sidebar',
+      },
+      hasMany: true,
+      relationTo: 'categories',
     },
   ],
   upload: {

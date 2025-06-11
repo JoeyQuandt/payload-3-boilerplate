@@ -729,14 +729,9 @@ export interface Topic {
   id: number;
   title?: string | null;
   slug?: string | null;
+  slugLock?: boolean | null;
   content?: string | null;
-  caterogy?:
-    | {
-        tag?: string | null;
-        'Related Content'?: (number | Post)[] | null;
-        id?: string | null;
-      }[]
-    | null;
+  categories?: (number | Category)[] | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -1222,14 +1217,9 @@ export interface CommentsSelect<T extends boolean = true> {
 export interface TopicSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  slugLock?: T;
   content?: T;
-  caterogy?:
-    | T
-    | {
-        tag?: T;
-        'Related Content'?: T;
-        id?: T;
-      };
+  categories?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

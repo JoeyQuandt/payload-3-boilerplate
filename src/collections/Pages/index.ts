@@ -38,7 +38,6 @@ export const Pages: CollectionConfig<'pages'> = {
     slug: true,
   },
   admin: {
-    group: 'Topic Content',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data }) => {

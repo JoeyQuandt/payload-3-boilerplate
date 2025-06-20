@@ -80,6 +80,24 @@ export const Posts: CollectionConfig<'posts'> = {
       required: true,
     },
     {
+      name: 'type',
+      type: 'select',
+      options: [
+        {
+          label: 'Article',
+          value: 'article',
+        },
+        {
+          label: 'Video',
+          value: 'video',
+        },
+        {
+          label: 'Slide',
+          value: 'Slide',
+        },
+      ],
+    },
+    {
       type: 'tabs',
       tabs: [
         {
@@ -134,33 +152,6 @@ export const Posts: CollectionConfig<'posts'> = {
             },
           ],
           label: 'Meta',
-        },
-        {
-          name: 'meta',
-          label: 'SEO',
-          fields: [
-            OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
-            }),
-            MetaTitleField({
-              hasGenerateFn: true,
-            }),
-            MetaImageField({
-              relationTo: 'media',
-            }),
-
-            MetaDescriptionField({}),
-            PreviewField({
-              // if the `generateUrl` function is configured
-              hasGenerateFn: true,
-
-              // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-            }),
-          ],
         },
       ],
     },

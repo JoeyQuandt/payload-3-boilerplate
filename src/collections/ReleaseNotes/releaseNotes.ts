@@ -1,6 +1,5 @@
 import { authenticated } from '@/access/authenticated'
 import { anyone } from '@/access/anyone'
-import { CollectionConfig } from 'payload'
 import { GlobalConfig } from 'payload'
 import { slugField } from '@/fields/slug'
 import { fileURLToPath } from 'url'
@@ -9,8 +8,8 @@ import path from 'path'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export const Overview: GlobalConfig = {
-  slug: 'overview',
+export const ReleaseNotes: GlobalConfig = {
+  slug: 'release notes',
   access: {
     read: anyone,
     update: authenticated,
@@ -19,10 +18,6 @@ export const Overview: GlobalConfig = {
     group: 'Pages',
   },
   fields: [
-    {
-      name: 'Title',
-      type: 'text',
-    },
     {
       name: 'Topic Overview Section',
       type: 'group',
